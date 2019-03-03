@@ -55,20 +55,20 @@ class ResNet18(nn.Module):
         super(ResNet18, self).__init__()
 
         self.conv1 = nn.Sequential(
-            nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1),
+            nn.Conv2d(3, 16, kernel_size=3, stride=3, padding=0),
             nn.BatchNorm2d(16)
         )
         # followed 4 blocks
         # [b, 64, h, w] => [b, 128, h ,w]
-        self.blk1 = ResBlk(16, 16)
+        self.blk1 = ResBlk(16, 32)
         # [b, 128, h, w] => [b, 256, h, w]
-        self.blk2 = ResBlk(16, 32)
+        self.blk2 = ResBlk(32, 64)
         # # [b, 256, h, w] => [b, 512, h, w]
-        # self.blk3 = ResBlk(128, 256)
+        self.blk3 = ResBlk(64, 128)
         # # [b, 512, h, w] => [b, 1024, h, w]
-        # self.blk4 = ResBlk(256, 512)
+        self.blk4 = ResBlk(128, 256)
 
-        self.outlayer = nn.Linear(32*32*32, 10)
+        self.outlayer = nn.Linear(256*10*10, 10)
 
     def forward(self, x):
         """
@@ -81,8 +81,8 @@ class ResNet18(nn.Module):
         # [b, 64, h, w] => [b, 1024, h, w]
         x = self.blk1(x)
         x = self.blk2(x)
-        # x = self.blk3(x)
-        # x = self.blk4(x)
+        x = self.blk3(x)
+        x = self.blk4(x)
 
         # print(x.shape)
         x = x.view(x.size(0), -1)

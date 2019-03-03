@@ -42,6 +42,7 @@ def main():
             # [b]
             x, label = x.to(device), label.to(device)
 
+
             logits = model(x)
             # logits: [b, 10]
             # label:  [b]
