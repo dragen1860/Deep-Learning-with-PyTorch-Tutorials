@@ -11,6 +11,10 @@
 - PyTorch 1.0
 - Windows 10
 
+添加：
+1. CIFAR10与ResNet18实战
+2. AE和Variational AE实战
+
 ![课程介绍](课程介绍/content.png)
 
 
