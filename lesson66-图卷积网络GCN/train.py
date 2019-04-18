@@ -49,6 +49,8 @@ model = GCN(nfeat=features.shape[1],
 optimizer = optim.Adam(model.parameters(),
                        lr=args.lr, weight_decay=args.weight_decay)
 
+print(model)
+
 if args.cuda:
     model.cuda()
     features = features.cuda()
@@ -60,12 +62,16 @@ if args.cuda:
 
 
 def train(epoch):
+
     t = time.time()
+
     model.train()
-    optimizer.zero_grad()
+    # [N, 7]
     output = model(features, adj)
     loss_train = F.nll_loss(output[idx_train], labels[idx_train])
     acc_train = accuracy(output[idx_train], labels[idx_train])
+
+    optimizer.zero_grad()
     loss_train.backward()
     optimizer.step()
 
@@ -86,7 +92,9 @@ def train(epoch):
 
 
 def test():
+
     model.eval()
+
     output = model(features, adj)
     loss_test = F.nll_loss(output[idx_test], labels[idx_test])
     acc_test = accuracy(output[idx_test], labels[idx_test])
