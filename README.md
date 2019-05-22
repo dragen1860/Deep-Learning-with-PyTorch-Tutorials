@@ -1,13 +1,11 @@
-# 深度学习与PyTorch入门实战视频教程
-
 ![](res/ad_banner.jpg)
 
-详情请前往：https://study.163.com/provider/480000001847407/index.htm?share=2&shareId=480000001847407
+××课程链接××：https://study.163.com/provider/480000001847407/index.htm?share=2&shareId=480000001847407
 
 
-![](res/cover.png)
+![](res/cover.png =250x)
  
-
+××课程大纲××
 ![课程介绍](res/outline.png)
 
 
