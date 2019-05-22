@@ -5,10 +5,10 @@
 详情请前往：https://study.163.com/provider/480000001847407/index.htm?share=2&shareId=480000001847407
 
 
-![](res/cover.jpg)
+![](res/cover.png)
  
 
-![课程介绍](课程介绍/content.png)
+![课程介绍](res/outline.png)
 
 
 
