@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://study.163.com/course/introduction/1208894818.htm?share=2&shareId=480000001847407
 ">
-    <img width="300"  src="res/ad_banner.png">
+    <img src="res/ad_banner.png">
   </a>
 </p> 
 
