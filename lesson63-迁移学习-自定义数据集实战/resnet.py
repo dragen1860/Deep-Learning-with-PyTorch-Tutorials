@@ -11,13 +11,11 @@ class ResBlk(nn.Module):
 
     def __init__(self, ch_in, ch_out, stride=1):
         """
-
         :param ch_in:
         :param ch_out:
         """
         super(ResBlk, self).__init__()
 
-        # we add stride support for resbok, which is distinct from tutorials.
         self.conv1 = nn.Conv2d(ch_in, ch_out, kernel_size=3, stride=stride, padding=1)
         self.bn1 = nn.BatchNorm2d(ch_out)
         self.conv2 = nn.Conv2d(ch_out, ch_out, kernel_size=3, stride=1, padding=1)
@@ -34,7 +32,6 @@ class ResBlk(nn.Module):
 
     def forward(self, x):
         """
-
         :param x: [b, ch, h, w]
         :return:
         """
@@ -45,7 +42,7 @@ class ResBlk(nn.Module):
         # element-wise add:
         out = self.extra(x) + out
         out = F.relu(out)
-        
+
         return out
 
 
@@ -53,7 +50,7 @@ class ResBlk(nn.Module):
 
 class ResNet18(nn.Module):
 
-    def __init__(self):
+    def __init__(self, num_class):
         super(ResNet18, self).__init__()
 
         self.conv1 = nn.Sequential(
@@ -61,20 +58,20 @@ class ResNet18(nn.Module):
             nn.BatchNorm2d(16)
         )
         # followed 4 blocks
-        # [b, 64, h, w] => [b, 128, h ,w]
-        self.blk1 = ResBlk(16, 32, stride=2)
-        # [b, 128, h, w] => [b, 256, h, w]
-        self.blk2 = ResBlk(32, 64, stride=2)
-        # # [b, 256, h, w] => [b, 512, h, w]
+        # [b, 16, h, w] => [b, 32, h ,w]
+        self.blk1 = ResBlk(16, 32, stride=3)
+        # [b, 32, h, w] => [b, 64, h, w]
+        self.blk2 = ResBlk(32, 64, stride=3)
+        # # [b, 64, h, w] => [b, 128, h, w]
         self.blk3 = ResBlk(64, 128, stride=2)
-        # # [b, 512, h, w] => [b, 1024, h, w]
+        # # [b, 128, h, w] => [b, 256, h, w]
         self.blk4 = ResBlk(128, 256, stride=2)
 
-        self.outlayer = nn.Linear(256*1*1, 10)
+        # [b, 256, 7, 7]
+        self.outlayer = nn.Linear(256*3*3, num_class)
 
     def forward(self, x):
         """
-
         :param x:
         :return:
         """
@@ -97,15 +94,18 @@ class ResNet18(nn.Module):
 
 def main():
     blk = ResBlk(64, 128)
-    tmp = torch.randn(2, 64, 32, 32)
+    tmp = torch.randn(2, 64, 224, 224)
     out = blk(tmp)
     print('block:', out.shape)
 
 
-    model = ResNet18()
-    tmp = torch.randn(2, 3, 32, 32)
+    model = ResNet18(5)
+    tmp = torch.randn(2, 3, 224, 224)
     out = model(tmp)
     print('resnet:', out.shape)
+
+    p = sum(map(lambda p:p.numel(), model.parameters()))
+    print('parameters size:', p)
 
 
 if __name__ == '__main__':

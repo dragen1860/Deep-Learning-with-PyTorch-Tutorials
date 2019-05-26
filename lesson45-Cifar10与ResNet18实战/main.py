@@ -8,7 +8,7 @@ from    lenet5 import Lenet5
 from    resnet import ResNet18
 
 def main():
-    batchsz = 32
+    batchsz = 128
 
     cifar_train = datasets.CIFAR10('cifar', True, transform=transforms.Compose([
         transforms.Resize((32, 32)),
@@ -55,7 +55,6 @@ def main():
             optimizer.step()
 
 
-        #
         print(epoch, 'loss:', loss.item())
 
 
@@ -80,7 +79,7 @@ def main():
                 # print(correct)
 
             acc = total_correct / total_num
-            print(epoch, 'acc:', acc)
+            print(epoch, 'test acc:', acc)
 
 
 
