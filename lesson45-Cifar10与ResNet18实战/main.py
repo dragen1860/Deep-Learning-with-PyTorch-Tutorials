@@ -12,13 +12,17 @@ def main():
 
     cifar_train = datasets.CIFAR10('cifar', True, transform=transforms.Compose([
         transforms.Resize((32, 32)),
-        transforms.ToTensor()
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                             std=[0.229, 0.224, 0.225])
     ]), download=True)
     cifar_train = DataLoader(cifar_train, batch_size=batchsz, shuffle=True)
 
     cifar_test = datasets.CIFAR10('cifar', False, transform=transforms.Compose([
         transforms.Resize((32, 32)),
-        transforms.ToTensor()
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                             std=[0.229, 0.224, 0.225])
     ]), download=True)
     cifar_test = DataLoader(cifar_test, batch_size=batchsz, shuffle=True)
 
