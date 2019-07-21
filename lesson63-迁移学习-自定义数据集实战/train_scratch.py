@@ -29,6 +29,8 @@ test_loader = DataLoader(test_db, batch_size=batchsz, num_workers=2)
 viz = visdom.Visdom()
 
 def evalute(model, loader):
+    model.eval()
+    
     correct = 0
     total = len(loader.dataset)
 
@@ -58,7 +60,8 @@ def main():
 
             # x: [b, 3, 224, 224], y: [b]
             x, y = x.to(device), y.to(device)
-
+            
+            model.train()
             logits = model(x)
             loss = criteon(logits, y)
 
