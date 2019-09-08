@@ -22,7 +22,7 @@ conda install pytorch torchvision cudatoolkit=10.0
 - 安装常用库
 
 ```python
-pip install numpy matplotlib pillow
+pip install numpy matplotlib pillow pandas
 ```
 
 # 课程链接
