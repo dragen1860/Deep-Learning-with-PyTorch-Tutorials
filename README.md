@@ -1,4 +1,5 @@
 # PyTorch安装指令
+请先安装Anaconda和CUDA。
 
 - 配置国内源
 
