@@ -39,7 +39,7 @@ pip install numpy matplotlib pillow pandas
 **课程链接:** https://study.163.com/course/courseMain.htm?share=2&shareId=480000001847407&courseId=1208894818&_trace_c_p_k2_=61a9e0a511f7409b92a08d4f4c964330
 
 <p align="center">
-  <img width="300"  src="res/cover.png">
+  <img width="500"  src="res/版权声明.png">
 </p> 
 
  
