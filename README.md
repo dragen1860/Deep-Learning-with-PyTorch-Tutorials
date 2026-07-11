@@ -46,7 +46,6 @@ pip install numpy matplotlib pillow pandas
 **课程大纲:**
 ![课程介绍](res/outline.png)
 
+---
 
-
-
-
+*[Mukller](https://github.com/Mukller)*
